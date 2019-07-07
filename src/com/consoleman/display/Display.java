@@ -3,8 +3,7 @@ package com.consoleman.display;
 import com.consoleman.keyboard.Keyboard;
 
 import javax.swing.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.*;
 
 public abstract class Display {
     // Проверяем создано окно или нет
@@ -36,14 +35,6 @@ public abstract class Display {
         // делаем окно видным
         window.setVisible(true);
 
-        /*window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);    // Для завершение процесса иначе после закрытия процесс останется
-        window.setSize(800, 600);                            // Размер окна
-        window.setResizable(false);                                        // Окно без возможности изменения размера
-        window.setLayout(null);                                            // Без использования менеджера расположения Layout элементов
-        //setLocation(400, 400);                                    // Положение окна с заданными координатами
-        window.setLocationRelativeTo(null);                                // Положение окана посередине
-        window.setVisible(true);*/
-
         created = true;
     }
 
@@ -62,8 +53,11 @@ public abstract class Display {
     }
 
     // функция считывания клавиш
-    public static void addInputListener(Keyboard inputListener){
-        window.add(inputListener);
+    public static void addInputListener(Keyboard keyboardListener){
+        window.add(keyboardListener);
     }
+
+
+
 }
 
