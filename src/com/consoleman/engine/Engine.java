@@ -72,7 +72,7 @@ public class Engine implements Runnable{
         if(keyboard.getKey(KeyEvent.VK_RIGHT)){
             System.out.println("Right");
         }
-        System.out.println(count);
+        System.out.print("");
         count++;
     }
 
