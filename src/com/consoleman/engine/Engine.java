@@ -2,10 +2,13 @@ package com.consoleman.engine;
 
 import com.consoleman.display.Display;
 import com.consoleman.keyboard.Keyboard;
+import com.consoleman.oscillator.Oscillator;
 
 import java.awt.event.KeyEvent;
+import java.nio.ByteBuffer;
 
 import static com.consoleman.display.Display.*;
+import static com.consoleman.oscillator.Oscillator.SINE_PACKET_SIZE;
 
 public class Engine implements Runnable{
 
@@ -18,13 +21,18 @@ public class Engine implements Runnable{
     private boolean            running;                                         // проверка запущена игра или нет
     private Thread             audioThread;
     private Keyboard           keyboard = new Keyboard();
-    private int                count = 0;
+    private Oscillator         oscillator = new Oscillator();
+    private double        phy;
+    private static double incPhy;
 
     public Engine(){
         running = false;                            // синтезатор еще не запущен
 
         Display.create( WIDTH, HEIGHT, TITLE);      // создаем окно
         Display.addInputListener(keyboard);         // для считывания клафиш
+        phy = 0;
+        incPhy  = 440.0/44100.0;
+
     }
 
     // функция запуска игры (причем запустить данную функцию может только один поток)
@@ -73,7 +81,6 @@ public class Engine implements Runnable{
             System.out.println("Right");
         }
         System.out.print("");
-        count++;
     }
 
     // после того как вся математика будет обсчитана будем отрисовывать сцены в игре
@@ -87,7 +94,14 @@ public class Engine implements Runnable{
         while (running)
         {
             update();
-            //render();
+
+            oscillator.generateSample(phy);
+            phy += incPhy;
+            if (incPhy > 1) {
+                incPhy -= 1;
+            }
+
+            System.out.println("incPhy" + incPhy);
         }
     }
 
