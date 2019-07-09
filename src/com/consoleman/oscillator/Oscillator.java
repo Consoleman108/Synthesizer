@@ -50,13 +50,7 @@ public class Oscillator{
     }
 
     public void generateSample(){
-        //for (int i = 0; i < SINE_PACKET_SIZE / SAMPLE_SIZE; i++) {
         byteBuffer.clear();
-            //sample = Short.MAX_VALUE * Math.sin(2 * Math.PI * phy);
-
-            //System.out.println("Sample: " + sample);
-
-            //byteBuffer.putShort((short)(sample));
         try {
             sample = Short.MAX_VALUE * sin[sampleCount];
         }
@@ -71,7 +65,6 @@ public class Oscillator{
         }
         System.out.println("sampleCount: " + sampleCount);
     }
-        //}
 
-    }
+}
 
