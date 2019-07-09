@@ -22,16 +22,16 @@ public class Engine implements Runnable{
     private Thread             audioThread;
     private Keyboard           keyboard = new Keyboard();
     private Oscillator         oscillator = new Oscillator();
-    private double        phy;
-    private static double incPhy;
+    //private double        phy;
+    //private static double incPhy;
 
     public Engine(){
         running = false;                            // синтезатор еще не запущен
 
         Display.create( WIDTH, HEIGHT, TITLE);      // создаем окно
         Display.addInputListener(keyboard);         // для считывания клафиш
-        phy = 0;
-        incPhy  = 440.0/44100.0;
+        //phy = 0;
+        //incPhy  = 440.0/44100.0;
 
     }
 
@@ -69,6 +69,7 @@ public class Engine implements Runnable{
     // тут будет считаться вся физикаБ вся геометрия, все математические расчеты, все движения, все позиции
     private void update(){
         if(keyboard.getKey(KeyEvent.VK_UP)){
+            oscillator.generateSample();
             System.out.println("UP");
         }
         if(keyboard.getKey(KeyEvent.VK_DOWN)){
@@ -94,14 +95,6 @@ public class Engine implements Runnable{
         while (running)
         {
             update();
-
-            oscillator.generateSample(phy);
-            phy += incPhy;
-            if (incPhy > 1) {
-                incPhy -= 1;
-            }
-
-            System.out.println("incPhy" + incPhy);
         }
     }
 

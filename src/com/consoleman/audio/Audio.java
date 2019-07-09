@@ -25,20 +25,6 @@ public class Audio{
 		sourceDataLine.start();
 	}
 
-	/*public void initAudioDataLine() throws LineUnavailableException{
-	AudioFormat   audioFormat  = new AudioFormat(SAMPLING_RATE, SAMPLE_SIZE_IN_BITS, CHANNELS, SIGNED, BIG_ENDIAN);
-	DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, audioFormat);
-
-		if (!AudioSystem.isLineSupported(dataLineInfo)){
-		System.out.println("Line matching " + dataLineInfo + " is not supported.");
-		throw new LineUnavailableException();
-	}
-
-	sourceDataLine = (SourceDataLine)AudioSystem.getLine(dataLineInfo);
-		sourceDataLine.open(audioFormat);
-		sourceDataLine.start();
-	}*/
-
 	public void writeToAudioDataLine(byte byteBufferArray[],int off, int len){
 		sourceDataLine.write(byteBufferArray, off, len);
 	}
