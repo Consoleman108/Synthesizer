@@ -22,16 +22,13 @@ public class Engine implements Runnable{
     private Thread             audioThread;
     private Keyboard           keyboard = new Keyboard();
     private Oscillator         oscillator = new Oscillator();
-    //private double        phy;
-    //private static double incPhy;
 
     public Engine(){
         running = false;                            // синтезатор еще не запущен
 
         Display.create( WIDTH, HEIGHT, TITLE);      // создаем окно
         Display.addInputListener(keyboard);         // для считывания клафиш
-        //phy = 0;
-        //incPhy  = 440.0/44100.0;
+        oscillator.sampleInit();
 
     }
 

@@ -9,7 +9,7 @@ import static com.consoleman.audio.Audio.SAMPLING_RATE;
 
 public class Oscillator{
     public static final int    SAMPLE_SIZE      = 2;
-    public static final int    FREQUENCY        = 440;
+    public static final double FREQUENCY        = 130.82;
     public static final double BUFFER_DURATION  = 0.100;
     public static final int    SINE_PACKET_SIZE = (int)(BUFFER_DURATION * SAMPLING_RATE * SAMPLE_SIZE);
 
@@ -32,9 +32,11 @@ public class Oscillator{
 
         sampleCount = 0;
         phy         = 0;
-        incPhy      = 440.0/44100.0;
+        incPhy      = FREQUENCY/SAMPLING_RATE;
         sin = new double[SAMPLING_RATE];
+    }
 
+    public void sampleInit(){
         for(int i = 0; i < SAMPLING_RATE; i++){
             sin[i] = Math.sin(2 * Math.PI * phy);
             phy += incPhy;
@@ -42,11 +44,6 @@ public class Oscillator{
                 incPhy -= 1;
             }
         }
-
-
-
-
-
     }
 
     public void generateSample(){
