@@ -1,16 +1,22 @@
 package com.consoleman.display;
 
 import com.consoleman.keyboard.Keyboard;
+import com.consoleman.oscillator.Oscillator;
 
 import javax.swing.*;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
+
+import static javax.swing.GroupLayout.Alignment.BASELINE;
+import static javax.swing.GroupLayout.Alignment.LEADING;
 
 public abstract class Display {
     // Проверяем создано окно или нет
     private static boolean created = false;
     // Переменная для рамки для листа (окно)
     private static JFrame window;
-
     // Метод для создания окна c с параметрами окна и названием
     public static void create(int width, int height, String title){
 
@@ -32,8 +38,18 @@ public abstract class Display {
         // делаем окно по центру
         // функция меняет позицию в зависимости от другого компонента, у нас его нет
         window.setLocationRelativeTo(null);
+
+        //window.getContentPane().add(addPanel());
+        //window.add(jSlider);
+
+        window.add(addPanel());
+        //window.add();
         // делаем окно видным
         window.setVisible(true);
+
+        //temp
+
+        //end temp
 
         created = true;
     }
@@ -54,10 +70,30 @@ public abstract class Display {
 
     // функция считывания клавиш
     public static void addInputListener(Keyboard keyboardListener){
+
         window.add(keyboardListener);
     }
 
 
+    public static JPanel addPanel(){
+        JPanel jPanel = new JPanel(new BorderLayout());
+        jPanel.setSize(600,200);
+        jPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        jPanel.setLayout(new BoxLayout(jPanel, BoxLayout.PAGE_AXIS));
+        //jPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        jPanel.setLocation(5,0);
 
+        // Display slider
+        /*JSlider jSlider = new JSlider(JSlider.HORIZONTAL, 0, 1000, 10);
+        jSlider.setPaintTicks(true);
+        jSlider.setMajorTickSpacing(100);
+        jSlider.setMinorTickSpacing(20);
+        jPanel.add(jSlider);*/
+
+
+        //jPanel.setLayout(null);
+
+        return jPanel;
+    }
 }
 

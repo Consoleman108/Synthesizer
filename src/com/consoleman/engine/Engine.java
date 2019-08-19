@@ -18,10 +18,10 @@ public class Engine implements Runnable{
     public static final String TITLE           = "Synthesizer";
 
 
-    private boolean            running;                                         // проверка запущена игра или нет
-    private Thread             audioThread;
-    private Keyboard           keyboard = new Keyboard();
-    private Oscillator         oscillator = new Oscillator();
+    private boolean running;                                         // проверка запущена игра или нет
+    private Thread audioThread;
+    private Keyboard keyboard = new Keyboard();
+    private Oscillator oscillator = new Oscillator(440);
 
     public Engine(){
         running = false;                            // синтезатор еще не запущен
@@ -29,7 +29,6 @@ public class Engine implements Runnable{
         Display.create( WIDTH, HEIGHT, TITLE);      // создаем окно
         Display.addInputListener(keyboard);         // для считывания клафиш
         oscillator.sampleInit();
-
     }
 
     // функция запуска игры (причем запустить данную функцию может только один поток)

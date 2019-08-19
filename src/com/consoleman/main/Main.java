@@ -4,7 +4,7 @@ import com.consoleman.engine.Engine;
 
 public class Main {
     public static void main(String args[]){
-        Engine tanks = new Engine();
-        tanks.start();
+        Engine synth = new Engine();
+        synth.start();
     }
 }
